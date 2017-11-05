@@ -16,6 +16,7 @@
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
         <RelativeLayout
+            android:id="@+id/currency_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

@@ -18,6 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ConversionScreen"
+            android:label="Conversion Screen"
+            android:parentActivityName=".MainActivity">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.preccytech.cryptocon.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
