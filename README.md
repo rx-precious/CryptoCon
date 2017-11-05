@@ -1,0 +1,2 @@
+# CryptoCon
+ It is an android application used for the conversion of Bitcoin(BTC) and Ethereum(ETH) to 20 prominent currencies of the World with Naira(NGN) inclusive. It makes use of live data from cryptocompare.com for it conversion.
