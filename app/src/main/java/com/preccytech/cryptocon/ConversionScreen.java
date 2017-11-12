@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 import com.preccytech.cryptocon.model.CurrencyAdapter;
@@ -18,56 +19,48 @@ import com.preccytech.cryptocon.model.CurrencyAdapter;
 
 public class ConversionScreen extends AppCompatActivity {
 
+    Double currency_price;
+    TextView BaseTextView;
+    EditText QuoteTextview;
+    Double conversion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.conversion_screen);
 
         Button Convert = (Button) findViewById(R.id.convert);
-        EditText BaseTextView = (EditText) findViewById(R.id.base_currency);
-        EditText QuoteTextview = (EditText) findViewById(R.id.quote_currency);
+        BaseTextView = (TextView) findViewById(R.id.base_currency);
+        QuoteTextview = (EditText) findViewById(R.id.quote_currency);
 
 
         Intent intent = getIntent();
         final String currency_quote = intent.getStringExtra(CurrencyAdapter.KEY_CURRENCY_QUOTE);
         final String currency_base = intent.getStringExtra(CurrencyAdapter.KEY_CURRENCY_BASE);
         final String currency_priceS = intent.getStringExtra(CurrencyAdapter.KEY_CURRENT_EXCHANGE);
-        Float currency_price = Float.parseFloat(String.valueOf(currency_priceS));
-
-        String convert_baseS = BaseTextView.getText().toString();
-        Float convert_base = Float.parseFloat(String.valueOf(convert_baseS));
-        String convert_quoteS = QuoteTextview.getText().toString();
-        Float convert_quote = Float.parseFloat(String.valueOf(convert_quoteS));
+        final Double currency_price = Double.parseDouble(currency_priceS);
 
 
-        BaseTextView.setHint(currency_base);
-        QuoteTextview.setHint(currency_quote);
-
-          Float conversionBaseToQuoteS = convert_base * currency_price;
-        final String conversionBaseToQuote = Float.toString(conversionBaseToQuoteS);
-        Float conversionQoteToBaseS = convert_quote / currency_price;
-        final String conversionQoteToBase = Float.toString(conversionQoteToBaseS);
-
+        BaseTextView.setHint(currency_price.toString() + " " + currency_quote);
+        QuoteTextview.setHint("1 " + currency_base);
 
         Convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                EditText BaseTextView = (EditText) findViewById(R.id.base_currency);
-                EditText QuoteTextview = (EditText) findViewById(R.id.quote_currency);
+                double inputPrice = Double.parseDouble(QuoteTextview.getText().toString());
 
-                if (BaseTextView != null) {
-                    QuoteTextview.setText(conversionBaseToQuote);
-                }else{
-                    BaseTextView.setText(conversionQoteToBase);
+                conversion = inputPrice * currency_price;
 
-                }
+
+                BaseTextView.setText(conversion.toString() + " " + currency_quote);
 
 
             }
         });
-
-
     }
+
+
 }
+
 
